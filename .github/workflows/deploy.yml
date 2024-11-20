@@ -33,13 +33,13 @@ jobs:
       #   run: |
       #     mkdir -p output/intro
       #     pwd
-      #     npx slidev build slides.md --base "/${{github.event.repository.name}}/intro/" --out "/output/intro"
+      #     npx slidev build slides.md --base "/${{github.event.repository.name}}/intro/" --out "output/intro"
 
       # Build slides in ics/
       - name: Build slides in ics/
         run: |
           mkdir -p output/arch
-          npx slidev build ./ics/arch.md --base "/${{github.event.repository.name}}/arch/" --out "/output/arch"
+          npx slidev build ./ics/arch.md --base "/${{github.event.repository.name}}/arch/" --out "output/arch"
         # for file in ./ics/*.md; do
         #   name=$(basename "$file" .md)
         #   mkdir -p output/$name
