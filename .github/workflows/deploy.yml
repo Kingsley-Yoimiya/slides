@@ -39,7 +39,8 @@ jobs:
       - name: Build slides in ics/
         run: |
           mkdir -p output/arch
-          npx slidev build ./ics/arch.md --base "/${{github.event.repository.name}}/arch/" --out "output/arch"
+          cp ./ics/arch.md ./
+          npx slidev build arch.md --base "/${{github.event.repository.name}}/arch/" --out "output/arch"
         # for file in ./ics/*.md; do
         #   name=$(basename "$file" .md)
         #   mkdir -p output/$name
