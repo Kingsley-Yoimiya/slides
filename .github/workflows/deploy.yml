@@ -37,12 +37,12 @@ jobs:
       # Build slides in ics/
       - name: Build slides in ics/
         run: |
-        for file in ./ics/*.md; do
-          name=$(basename "$file" .md)
-          mkdir -p output/$name
-          cp $file ./
-          npx slidev build "${name}.md" --base "/${{github.event.repository.name}}/$name/" --out "output/$fname"
-        done
+          for file in ./ics/*.md; do
+            name=$(basename "$file" .md)
+            mkdir -p output/$name
+            cp $file ./
+            npx slidev build "${name}.md" --base "/${{github.event.repository.name}}/$name/" --out "output/$fname"
+          done
 
       - name: Verify output structure
         run: ls -R output
