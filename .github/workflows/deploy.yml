@@ -32,7 +32,7 @@ jobs:
       - name: Build slides.md
         run: |
           mkdir -p output/intro
-          npx slidev build slides.md --base "/${{github.event.repository.name}}/" --out "output/intro"
+          npx slidev build slides.md --base "/${{github.event.repository.name}}/intro/" --out "output/intro"
 
       # Build slides in ics/
       - name: Build slides in ics/
@@ -41,7 +41,7 @@ jobs:
           for file in ./ics/*.md; do
             name=$(basename "$file" .md)
             mkdir -p output/ics/$name
-            npx slidev build "$file" --base "/${{github.event.repository.name}}/$name/" --out "output/ics/$name"
+            npx slidev build "$file" --base "/${{github.event.repository.name}}/ics/$name/" --out "output/ics/$name"
           done
 
       - name: Verify output structure
