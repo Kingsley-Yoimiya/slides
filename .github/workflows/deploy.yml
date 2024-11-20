@@ -42,6 +42,7 @@ jobs:
             name=$(basename "$file" .md)
             mkdir -p output/$name
             pwd
+            echo $file
             npx slidev build "$file" --base "/${{github.event.repository.name}}/arch/" --out "output/arch"
             ls -R output/$name
           done
