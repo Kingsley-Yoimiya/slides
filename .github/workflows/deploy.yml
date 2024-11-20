@@ -38,14 +38,15 @@ jobs:
       # Build slides in ics/
       - name: Build slides in ics/
         run: |
-          for file in ./ics/*.md; do
-            name=$(basename "$file" .md)
-            mkdir -p output/$name
-            pwd
-            echo $file
-            npx slidev build $file --base "/${{github.event.repository.name}}/arch/" --out output/arch
-            ls -R output/$name
-          done
+          npx slidev build ./ics/arch.md --base "/${{github.event.repository.name}}/arch/" --out "output/arch"
+        # for file in ./ics/*.md; do
+        #   name=$(basename "$file" .md)
+        #   mkdir -p output/$name
+        #   pwd
+        #   echo $file
+        #   npx slidev build $file --base "/${{github.event.repository.name}}/arch/" --out output/arch
+        #   ls -R output/$name
+        # done
 
       - name: Verify output structure
         run: ls -R output
