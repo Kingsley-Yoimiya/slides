@@ -34,6 +34,9 @@ jobs:
       - name: Build
         run: nr build --base /${{github.event.repository.name}}/
 
+      - name: Build
+        run: nr build --base /${{github.event.repository.name}}/arch-lab
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
