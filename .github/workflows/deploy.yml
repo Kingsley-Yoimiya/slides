@@ -28,27 +28,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # # Build slides.md
-      # - name: Build slides.md
-      #   run: |
-      #     mkdir -p output/intro
-      #     pwd
-      #     npx slidev build slides.md --base "/${{github.event.repository.name}}/intro/" --out "output/intro"
+      # Build slides.md
+      - name: Build slides.md
+        run: |
+          mkdir -p output/intro
+          npx slidev build slides.md --base "/${{github.event.repository.name}}/intro/" --out "output/intro"
 
       # Build slides in ics/
       - name: Build slides in ics/
         run: |
-          mkdir -p output/arch
-          cp ./ics/arch.md ./
-          npx slidev build arch.md --base "/${{github.event.repository.name}}/arch/" --out "output/arch"
-        # for file in ./ics/*.md; do
-        #   name=$(basename "$file" .md)
-        #   mkdir -p output/$name
-        #   pwd
-        #   echo $file
-        #   npx slidev build $file --base "/${{github.event.repository.name}}/arch/" --out output/arch
-        #   ls -R output/$name
-        # done
+        for file in ./ics/*.md; do
+          name=$(basename "$file" .md)
+          mkdir -p output/$name
+          cp $file ./
+          npx slidev build "${name}.md" --base "/${{github.event.repository.name}}/$name/" --out "output/$fname"
+        done
 
       - name: Verify output structure
         run: ls -R output
