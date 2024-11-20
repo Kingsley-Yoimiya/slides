@@ -32,7 +32,7 @@ jobs:
       - name: Build slides.md
         run: |
           mkdir -p output
-          npx slidev build slides.md --base "/${{github.event.repository.name}}/" --out "output/"
+          npx slidev build slides.md --base "/${{github.event.repository.name}}/" --out "output/intro"
 
       # Build slides in ics/
       - name: Build slides in ics/
