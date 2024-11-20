@@ -31,16 +31,16 @@ jobs:
       # Build slides.md
       - name: Build slides.md
         run: |
-          mkdir -p output/intro
+          mkdir -p /output/intro
           pwd
-          npx slidev build slides.md --base "/${{github.event.repository.name}}/intro/" --out "output/intro"
+          npx slidev build slides.md --base "/${{github.event.repository.name}}/intro/" --out "/output/intro"
 
       # Build slides in ics/
       - name: Build slides in ics/
         run: |
           cd ics
-          mkdir -p output/arch
-          npx slidev build ./arch.md --base "/${{github.event.repository.name}}/arch/" --out "output/arch"
+          mkdir -p /output/arch
+          npx slidev build arch.md --base "/${{github.event.repository.name}}/arch/" --out "/output/arch"
         # for file in ./ics/*.md; do
         #   name=$(basename "$file" .md)
         #   mkdir -p output/$name
@@ -51,14 +51,14 @@ jobs:
         # done
 
       - name: Verify output structure
-        run: ls -R output
+        run: ls -R /output
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: output # Ensure entire 'output' directory is uploaded
+          path: /output # Ensure entire 'output' directory is uploaded
 
   deploy:
     environment:
