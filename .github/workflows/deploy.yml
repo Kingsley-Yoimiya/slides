@@ -40,7 +40,7 @@ jobs:
           mkdir -p output/ics
           for file in ./ics/*.md; do
             name=$(basename "$file" .md)
-            mkdir -p output/ics/$file
+            mkdir -p output/ics/$name
             npx slidev build "$file" --base "/${{github.event.repository.name}}/$name/" --out "output/ics/$name"
           done
 
