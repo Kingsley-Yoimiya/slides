@@ -1,4 +1,4 @@
-name: Deploy pages
+name: Deploy slides
 
 on:
   workflow_dispatch:
@@ -25,24 +25,29 @@ jobs:
         with:
           node-version: 'lts/*'
 
-      - name: Setup @antfu/ni
-        run: npm i -g @antfu/ni
-
       - name: Install dependencies
-        run: nci
+        run: npm ci
 
-      - name: Build
-        run: nr build --base /${{github.event.repository.name}}/
+      # Build slides.md
+      - name: Build slides.md
+        run: |
+          mkdir -p output
+          npx slidev build slides.md --base "/${{github.event.repository.name}}/" --out "output/"
 
-      - name: Build
-        run: nr build --base /${{github.event.repository.name}}/arch-lab
+      # Build slides in ics/
+      - name: Build slides in ics/
+        run: |
+          for file in ./ics/*.md; do
+            name=$(basename "$file" .md)
+            npx slidev build "$file" --base "/${{github.event.repository.name}}/$name/" --out "output/ics/$name"
+          done
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: output
 
   deploy:
     environment:
