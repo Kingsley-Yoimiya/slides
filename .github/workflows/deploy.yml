@@ -41,7 +41,7 @@ jobs:
             name=$(basename "$file" .md)
             mkdir -p output/$name
             cp $file ./
-            npx slidev build "${name}.md" --base "/${{github.event.repository.name}}/$name/" --out "output/$fname"
+            npx slidev build "${name}.md" --base "/${{github.event.repository.name}}/$name/" --out "output/$name"
           done
 
       - name: Verify output structure
